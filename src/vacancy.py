@@ -1,4 +1,5 @@
-
+# def str_to_digit(input_str):
+#     return int(input_str.split(" ")[0])
 
 
 class Vacancy:
@@ -33,15 +34,12 @@ class Vacancy:
             return int_float
         raise ValueError(f"Invalid {name_col}, {name_col} must be a number.")
 
-    @staticmethod
-    def str_to_digit(input_str):
-        return int(input_str.split(" ")[0])
 
     def __eq__(self, other):
-        return str_to_digit(self.salary) == str_to_digit(other.salary)
+        return float(self.salary) == float(other.salary)
 
     def __lt__(self, other):
-        return str_to_digit(self.salary) < str_to_digit(other.salary)
+        return float(self.salary) < float(other.salary)
 
     def __gt__(self, other):
-        return str_to_digit(self.salary) > str_to_digit(other.salary)
+        return float(self.salary) > float(other.salary)
