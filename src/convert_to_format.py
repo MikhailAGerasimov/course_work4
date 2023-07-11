@@ -16,23 +16,35 @@ def convert_hh(res):
         if item.get("salary", "") is not None:
             vacancy.append(f'{item.get("salary", {}).get("from", "")} '
                                f'{item.get("salary", {}).get("currency", "")}')
-        elif item.get("salary", "") is not None:
-            if item.get("salary", {}).get("from") is None:
-                vacancy.append(f'{item.get("salary", {}).get("to", "")} '
-                                   f'{item.get("salary", {}).get("currency", "")}')
         else:
-            vacancy.append("Не указана")
+            vacancy.append("0")
         vacancy.append(item.get("employer", {}).get("name", ""))
         if item.get("snippet", {}).get("responsibility", "") is not None:
-            vacancy.append(f'{item.get("snippet", {}).get("responsibility", "")[0:50]}...')
+            vacancy.append(item.get("snippet", {}).get("responsibility", ""))
         else:
-            vacancy.append("Не указано")
+            vacancy.append("0")
         vacancy.append(item.get("alternate_url", ""))
         vacancy.append(item.get("area", {}).get("name", ""))
 
         vac.append(vacancy)
     return vac
 
-def convert_sj():
+def convert_sj(res):
     vac = []
+    for item in res["objects"]:
+        vacancy = []
+        vacancy.append(str(item.get("id", "")))
+        vacancy.append(item.get("profession", ""))
+        if item.get("payment_from", "") is not None:
+            vacancy.append(f'{item.get("payment_from", "")} {item.get("currency", "")}')
+        else:
+            vacancy.append("0")
+        vacancy.append(item.get("firm_name", ""))
+        vacancy.append(item.get('candidat', ''))
+        vacancy.append(item.get("link", ""))
+        vacancy.append(item.get("town", {}).get("title", ""))
+        vac.append(vacancy)
     return vac
+
+def str_to_digit(input_str):
+    return int(input_str.split(" ")[0])

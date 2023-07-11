@@ -19,7 +19,6 @@ class HeadHunter(VacanciesAPI):
     def get_vacancies(self, **kwargs):
         """
         :param kwargs:
-        area - Код региона (1 - Москва)
         text - Поисковый запрос
         per_page - Количество вакансий на странице
         """
@@ -37,3 +36,6 @@ class HeadHunter(VacanciesAPI):
         else:
             print("Ошибка при выполнении запроса:", response.status_code)
             return None
+
+    def get_search_vacancies(self, search_data, n=10):
+        return self.get_vacancies(text=search_data, per_page=n)

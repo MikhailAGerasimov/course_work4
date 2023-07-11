@@ -21,8 +21,7 @@ class SuperJob(VacanciesAPI):
     def get_vacancies(self, **kwargs):
         """
         :param kwargs:
-        town - город ("Москва")
-        keyword - Поисковый запрос
+        text - Поисковый запрос
         count - Количество вакансий для вывода
         """
         params = {}
@@ -41,3 +40,6 @@ class SuperJob(VacanciesAPI):
         else:
             print("Ошибка при выполнении запроса.")
             return []
+
+    def get_search_vacancies(self, search_data, n=10):
+        return self.get_vacancies(keyword=search_data, count=n)
