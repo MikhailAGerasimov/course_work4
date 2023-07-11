@@ -26,7 +26,6 @@ class HeadHunter(VacanciesAPI):
         params = {}
         for key, value in kwargs.items():
             params[key] = value
-
         response = get(self._api_link, params=params)
 
         if response.status_code == 200:
@@ -39,3 +38,7 @@ class HeadHunter(VacanciesAPI):
 
     def get_search_vacancies(self, search_data, n=10):
         return self.get_vacancies(text=search_data, per_page=n)
+
+    def get_region_vacancies(self, region):
+
+        return self.get_vacancies(city = region)

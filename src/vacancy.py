@@ -25,7 +25,7 @@ class Vacancy:
         # return (f"ID вакансии:{self.id}\nНазвание вакансии:{self.name}\nЗар. плата:{self.salary}"
         # f"\nНазвание компании:{self.company_name}\nОписание вакансии:{self.description}"
         # f"\nСсылка на вакансию: {self.link}\nМестонахождение: {self.region}")
-        return (f"ID вакансии:{self.id}\nНазвание вакансии:{self.name}\nЗар. плата:{self.salary}")
+        return (f"ID вакансии:{self.id}\nНазвание вакансии:{self.name}\nЗар. плата:{self.salary}\nМестонахождение: {self.region}")
     @staticmethod
     def validate_str(string_data, name_col):
         if isinstance(string_data, str):

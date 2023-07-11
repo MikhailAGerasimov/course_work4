@@ -25,7 +25,6 @@ def convert_hh(res):
             vacancy.append("0")
         vacancy.append(item.get("alternate_url", ""))
         vacancy.append(item.get("area", {}).get("name", ""))
-
         vac.append(vacancy)
     return vac
 

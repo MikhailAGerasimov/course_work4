@@ -26,6 +26,7 @@ def user_interface():
                 if user_input_oper == '1':
                     search_text = input("Введите запрос:")
                     result = platform.get_search_vacancies(search_text)
+                    print(result)
                     vac_list=[]
                     temp_list = convert_result(platform, result)
                     for item in temp_list:
@@ -39,19 +40,32 @@ def user_interface():
                     search_text = input("Введите запрос:")
                     vac_num = int(input("Сколько получить вакансий по зарплате (0-99)? "))
                     result = platform.get_search_vacancies(search_text, vac_num)
-                    #platform.printj(result)
+
                     vac_list=[]
                     temp_list = convert_result(platform, result)
                     for item in temp_list:
                         vacancy = Vacancy(item[0],item[1], item[2], item[3], item[4], item[5], item[6])
-                        # print(30*'-')
-                        # print(vacancy)
                         vac_list.append(vacancy)
                     sorted_list = selection_sort(vac_list)
+
                     for item in sorted_list:
                         print(30*'-')
                         print(item)
-
+                    input("Нажмите ENTER, чтобы продолжить!")
+                    break
+                elif user_input_oper == "3":
+                    region = input("Получить вакансии выбранного региона: ")
+                    #n = input("Количество для вывода: ")
+                    result = platform.get_region_vacancies(region)
+                    #platform.printj(result)
+                    temp_list = convert_result(platform, result)
+                    vac_list = []
+                    for item in temp_list:
+                        #print(item)
+                        vacancy = Vacancy(item[0], item[1], item[2], item[3], item[4], item[5], item[6])
+                        vac_list.append(vacancy)
+                        print(30*'-')
+                        print(vacancy)
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
