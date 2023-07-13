@@ -4,6 +4,10 @@ from src.vacancy import Vacancy
 from src.prints import print_user_1, print_user_2, print_user_3
 from src.convert_to_format import convert_result
 from src.sorting import selection_sort
+from src.vac_to_file_json import VacFileJSON
+import json
+import pathlib
+from pathlib import Path
 
 def user_interface():
     '''Функция для взаимодействия с пользователем'''
@@ -57,11 +61,9 @@ def user_interface():
                     region = input("Получить вакансии выбранного региона: ")
                     #n = input("Количество для вывода: ")
                     result = platform.get_region_vacancies(region)
-                    #platform.printj(result)
                     temp_list = convert_result(platform, result)
                     vac_list = []
                     for item in temp_list:
-                        #print(item)
                         vacancy = Vacancy(item[0], item[1], item[2], item[3], item[4], item[5], item[6])
                         vac_list.append(vacancy)
                         print(30*'-')
@@ -69,8 +71,26 @@ def user_interface():
                     input("Нажмите ENTER, чтобы продолжить!")
                     break
 
+            filename = 'data_vacancies.json'
+            js_file = VacFileJSON(filename)
+            file_path = js_file.add_vacancy(vac_list)
+            while True:
+                user_choice = input("1 - Посмотреть вакансии\n"
+                                    "2 - Удалить вакансию по id\n"
+                                    "0 - Назад\n")
 
+                if user_choice == "1":
+                    json_data = js_file.get_vacancies()
+                    for vacancy in json_data:
+                        print(30*'-')
+                        print(vacancy)
+                elif user_choice == "2":
+                    del_vacancy = input("id вакансии: ")
+                    js_file.remove_vacancy(del_vacancy)
 
+                elif user_choice == "0":
+                    break
+                input("Нажмите ENTER, чтобы продолжить!")
 
         elif user_input == "0":
             flag = False
