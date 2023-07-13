@@ -5,9 +5,7 @@ from src.prints import print_user_1, print_user_2, print_user_3
 from src.convert_to_format import convert_result
 from src.sorting import selection_sort
 from src.vac_to_file_json import VacFileJSON
-import json
-import pathlib
-from pathlib import Path
+
 
 def user_interface():
     '''Функция для взаимодействия с пользователем'''
@@ -30,7 +28,6 @@ def user_interface():
                 if user_input_oper == '1':
                     search_text = input("Введите запрос:")
                     result = platform.get_search_vacancies(search_text)
-                    print(result)
                     vac_list=[]
                     temp_list = convert_result(platform, result)
                     for item in temp_list:
@@ -59,10 +56,9 @@ def user_interface():
                     break
                 elif user_input_oper == "3":
                     region = input("Получить вакансии выбранного региона: ")
-                    #n = input("Количество для вывода: ")
+                    vac_list = []
                     result = platform.get_region_vacancies(region)
                     temp_list = convert_result(platform, result)
-                    vac_list = []
                     for item in temp_list:
                         vacancy = Vacancy(item[0], item[1], item[2], item[3], item[4], item[5], item[6])
                         vac_list.append(vacancy)

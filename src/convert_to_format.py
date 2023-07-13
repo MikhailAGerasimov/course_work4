@@ -2,6 +2,12 @@
 # from superjob import SuperJob
 
 def convert_result(platform, res):
+    '''
+    Данные с платформ конвертируются в едный формат данных
+    :param platform:
+    :param res:
+    :return:
+    '''
     if f"{platform}" == "headhunter.ru":
         return convert_hh(res)
     elif f"{platform}" == "superjob.ru":
@@ -33,7 +39,7 @@ def convert_sj(res):
     for item in res["objects"]:
         vacancy = []
         vacancy.append(str(item.get("id", "")))
-        vacancy.append(item.get("profession", ""))
+        vacancy.append(item.get("profession", "")[:100])
         if item.get("payment_from", "") is not None:
             vacancy.append(f'{item.get("payment_from", "")} {item.get("currency", "")}')
         else:
